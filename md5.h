@@ -97,3 +97,7 @@ inline uint32x4_t ROTATELEFT_SIMD(uint32x4_t num, int n) {
 
 void MD5Hash(string input, bit32 *state);
 void MD5HashSIMD(string inputs[4], bit32 states[4][4]);
+
+void MD5HashSIMD2(string inputs[2], bit32 states[2][4]);
+void MD5HashSIMD8(string inputs[8], bit32 states[8][4]);
+void MD5HashSIMD16(string inputs[16], bit32 states[16][4]);

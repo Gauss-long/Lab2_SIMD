@@ -12,6 +12,10 @@ using namespace chrono;
 // g++ main.cpp train.cpp guessing.cpp md5.cpp -o test.exe -O2
 // bash test.sh 1 1 
 
+// g++ main.cpp train.cpp guessing.cpp md5.cpp -o main
+// g++ main.cpp train.cpp guessing.cpp md5.cpp -o main -O1
+// g++ main.cpp train.cpp guessing.cpp md5.cpp -o main -O2
+
 int main()
 {
     double time_hash = 0;  // 用于MD5哈希的时间
@@ -74,16 +78,28 @@ int main()
 
             int size = q.guesses.size();
             int i = 0;
-            for (; i + 3 < size; i += 4)
+            for (; i + 15 < size; i += 16)
             {
-                string pws[4] = {
+                string pws[16] = {
                     q.guesses[i],
                     q.guesses[i + 1],
                     q.guesses[i + 2],
-                    q.guesses[i + 3]
+                    q.guesses[i + 3],
+                    q.guesses[i + 4],
+                    q.guesses[i + 5],
+                    q.guesses[i + 6],
+                    q.guesses[i + 7],
+                    q.guesses[i + 8],
+                    q.guesses[i + 9],
+                    q.guesses[i + 10],
+                    q.guesses[i + 11],
+                    q.guesses[i + 12],
+                    q.guesses[i + 13],
+                    q.guesses[i + 14],
+                    q.guesses[i + 15]
                 };
-                bit32 states[4][4];
-                MD5HashSIMD(pws, states);
+                bit32 states[16][4];
+                MD5HashSIMD16(pws, states);
             }
             for (; i < size; i++)
             {
