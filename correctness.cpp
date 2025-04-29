@@ -7,6 +7,7 @@
 using namespace std;
 // 编译指令如下：
 // g++ correctness.cpp train.cpp guessing.cpp md5.cpp -o test.exe
+// g++ correctness.cpp train.cpp guessing.cpp md5.cpp -o main
 //执行
 // ./test.exe
 int main()

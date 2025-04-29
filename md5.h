@@ -67,8 +67,11 @@ typedef unsigned int bit32;
 
 // 左循环 SIMD
 inline uint32x4_t ROTATELEFT_SIMD(uint32x4_t num, int n) {
-    return vsriq_n_u32(vshlq_n_u32(num, n), num, 32 - n);
+  uint32x4_t left = vshlq_n_u32(num, n);            // 左移
+  uint32x4_t right = vshrq_n_u32(num, 32 - n);      // 右移
+  return vorrq_u32(left, right);                     // 合并左右移的结果
 }
+
 
 // 四个轮函数 SIMD版
 #define FF_SIMD(a, b, c, d, x, s, ac) { \
